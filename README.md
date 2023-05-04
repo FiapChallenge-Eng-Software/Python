@@ -1,2 +1,0 @@
-# Python
-Checkpoint/Sprint - Python
