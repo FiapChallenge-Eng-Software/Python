@@ -111,6 +111,7 @@ while True:
         # Opção do cliente
     elif opcao == "2":
             pos = ["sim", "Sim", "S", "s", "Ss", "ss"]
+            neg = ["não","Não","nao", "Nao", "N", "n", "Ns", "nn"]
             dec = None
             usuarios = {}
 
@@ -205,25 +206,80 @@ while True:
 
                     print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}\n")
                     #fim do cadastro, seleção dos vinho
+                    
                     print("Agora vamos para o menu de seleção dos vinhos")
                     
                     opcVinhos = ["1","2","3","4"]  
                     print(" 1 - Vinho Tinto - R$149.99\n 2 - Vinho Branco - R$99,99\n 3 - Vinho Rosé - R$79.99\n 4 - Vinho do Porto - R$199,99")
                 
                     vinSel = None
-                    while vinSel not in opcVinhos:
+                    while vinSel is None:
                         vinSel = input("Selecione qual vinho deseja: (1,2,3,4)")  
                         if vinSel not in opcVinhos:
                             print("Por favor, digite uma opção válida (1,2,3,4)")
+                            vinSel = None
                         else: #opcão dentro dos vinhos listados                           
                             match vinSel:
                                 case "1":
                                     print("Você optou pela opção 1: (Vinho Tinto - R$149,99)")
-                                    quantVin = int(input("Quantos vinhos deseja? "))
-                                    valorT = quantVin * 149.99
-                                    
-                                    
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 149.99
+                                    quantidade -= quantCompra
+                                case "2":
+                                    print("Você optou pela opção 2: (Vinho Branco - R$99,99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 99.99
+                                    quantidade -= quantCompra
+                                case "3":
+                                    print("Você optou pela opção 3: (Vinho Rosé - R$79.99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 79.99
+                                    quantidade -= quantCompra
+                                case "4":
+                                    print("Você optou pela opção 4: (Vinho do Porto - R$199,99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 199.99
+                                    quantidade -= quantCompra
                                 
+                            confirmaSel = None
+                            while confirmaSel is None:
+                                confirmaSel = input("Gostaria de confirmar sua seleção? (Sim/Não) ")
+                                if confirmaSel in pos:
+                                    if quantidade < 0:
+                                        print("Não temos esta quantidade do vinho $s no estoque \nQuantidade no estoque = %d" %(vinSe, quantidade))
+                                        continue
+                                    else: #quantidade no estoque
+                                        print("Quantidade disponível no estoque")
+                                        print("O valor total é: R$%5.2f" %valorT)
+                                        
+                                        if valorT > 100:
+                                            print("Valor mínimo de R$100,00 não alcançado\n Selecione mais vinhos dessa vez para realizar a compra")
+                                            quantCompra = 0
+                                            vinSel = None
+                                        
+                                        elif valorT > 200:
+                                            frete = 0
+                                            print("Frete grátis!")
+                                            
+                                        else:
+                                            frete = 0.1 # frete de 10% para valores entre 100 e 200
+                                            print("Calculando seu frete...")   
+                                        
+                                        valorFinal = valorT + (valorT * frete) 
+                                        
+                                        print("O valor final com frete é R$%5.2f" %valorFinal)   
+                                        print("Você comprou %d vinho(s) da categoria %s" %(quantCompra, vinSel))
+                                        print("Muito obrigado pela preferência %s. Volte Sempre!" %nome)
+                                                                
+                                        
+                                elif confirmaSel in neg:
+                                    print("Muito bem, pode alterar seu pedido")
+                                    vinSel = None
+                                    
+                                else:
+                                    print("Dê uma resposta válida! (Sim/Não)")
+                                    confirmaSel = None
+                                                                                                                     
                         
                 else:
                     print(f"Tudo bem,{msg} ")
