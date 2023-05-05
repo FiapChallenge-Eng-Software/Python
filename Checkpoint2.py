@@ -12,6 +12,7 @@ vend_usu = "vendedor1"
 vend_pass = "12345"
 # Definir mensagem de boas-vindas
 import datetime
+import getpass
 hora = datetime.datetime.now().time()
 if hora.hour < 12:
     msg = "Bom dia!"
@@ -105,45 +106,84 @@ while True:
 
             # Login do usuário
             while True:
-                print("Bem-vindo ao sistema de login!")
+                print("\n*****Bem-vindo ao sistema de login!******\n")
                 usuario_login = input("Digite seu nome de usuário: ")
                 senha_login = input("Digite sua senha: ")
                 if usuario_login in usuarios and usuarios[usuario_login] == senha_login:
-                    print("Login efetuado com sucesso!")
-                    dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro!")
+                    print("\n*****Login efetuado com sucesso!******\n")
+                    dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro! ")
                     if dec in pos:
-                        nome = input("Digite seu primeiro nome: ")
+                        
+                        nome = None
+                        while nome is None:
+                            nome = input("Digite seu primeiro nome: ")
+                            if nome == "":
+                                print("Por favor, preencha seu nome.")
+                                nome = None
+
                         sobrenome = input("Digite seu sobrenome: ")
-                        idade = int(input("Digite sua idade: "))
+                        if sobrenome == "":
+                            print("Por favor, preencha seu sobrenome.")
+                            sobrenome = None
+
+                        idade = None
+                        while idade is None:
+                            try:
+                                idade = int(input("Digite sua idade: "))
+                                if idade < 0:
+                                    print("Por favor, digite uma idade válida.")
+                                    idade = None
+                            except ValueError:
+                                print("Por favor, digite um valor numérico para a idade.")
+                                idade = None
 
                         # Cadastro de endereço
                         rua = None
                         while rua is None:
                             rua = input("Digite o nome da sua rua: ")
+                            if rua == "":
+                                print("Por favor, preencha o nome da rua.")
+                                rua = None
 
                         bairro = None
                         while bairro is None:
                             bairro = input("Digite o bairro: ")
+                            if bairro == "":
+                                print("Por favor, preencha o nome do bairro.")
+                                bairro = None
 
                         num = None
                         while num is None:
                             num = input("Digite o número da casa: ")
+                            if num == "":
+                                print("Por favor, preencha o número da casa.")
+                                num = None
 
                         cep = None
-                        cep_str = input("Digite o CEP: ")
-                        try:
-                            cep = int(cep_str)
-                        except ValueError:
-                            print("Por favor, digite um CEP válido.")
+                        while cep is None:
+                            cep_str = input("Digite o CEP: ")
+                            if cep_str == "":
+                                print("Por favor, preencha o CEP.")
+                                cep = None
+                            else:
+                                try:
+                                    cep = int(cep_str)
+                                except ValueError:
+                                    print("Por favor, digite um CEP válido.")
+                                    cep = None
 
-                        comp = None
-                        while comp is None or not comp.strip():
-                            comp = input("Digite o complemento (opcional): ") or None
-                    print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}")     
+                        comp = input("Digite o complemento (opcional): ")
+
+                        print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}")     
+                        break
+                    else:
+                        print(f"Tudo bem,{msg} ")
+                        break
                     break
-
-            else:
-                print("Opção inválida. Tente novamente.")        
+                break
+            break
+    else:
+        print("\nOpção inválida. Tente novamente.")        
     
 else:
             print(f"Obrigado, {msg}!")
