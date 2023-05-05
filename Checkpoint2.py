@@ -5,7 +5,12 @@
 # Eduardo Fedeli 550132
 # cria um dicionário vazio para representar o estoque
 # Definir inventário vazio
-inventario = {}
+estoque = {
+     "1": ("Vinho tinto", 5, 149.90),
+    "2": ("Vinho branco", 10, 99.90),
+    "3": ("Vinho rosé", 7, 79.90),
+    "4": ("Vinho do Porto", 3, 199.90),
+}
 
 # Definir credenciais do vendedor
 vend_usu = "vendedor1"
@@ -29,60 +34,77 @@ while True:
     # Opção do vendedor
     if opcao == "1":
         while True:
-            vend_usu_input = input("Digite seu e-mail: ")
-            if vend_usu_input == vend_usu:
-                vend_pass_input = input("Digite sua senha: ")
-                if vend_pass_input == vend_pass:
-                    print("Login efetuado com sucesso!")
-                    # TODO: adicionar menu para gerenciamento de estoque
-                    while True:
-                        estoque=[]
-                        print("\nSelecione uma opção:\n1 - Verificar estoque\n2 - Modificar estoque\n3 - Sair")
-                        opcao_vend = input()
-                        if opcao_vend == "1":
-                            print("\nEstoque atual:\n")
-                            for numero, (nome, quantidade, valor) in inventario.items():
-                                print(f"{numero}. {nome} - {quantidade} unidades - R$ {valor:.2f}")
-                        elif opcao_vend == "2":
-                            print("\nAdicionar ou remover produtos do estoque:\n")
-                            for numero, (nome, quantidade, valor) in inventario.items():
-                                print(f"{numero}. {nome} - {quantidade} unidades - R$ {valor:.2f}")
-                            escolha = input("\nDigite o número do produto que deseja modificar: ")
-                            if escolha in inventario:
-                                nome, quantidade, valor = inventario[escolha]
-                                print(f"\nProduto selecionado: {nome} - {quantidade} unidades - R$ {valor:.2f}")
-                                opcao_estoque = input("\nO que deseja fazer:\n1 - Adicionar unidades\n2 - Remover unidades\n3 - Alterar valor\n4 - Cancelar\n")
-                                if opcao_estoque == "1":
-                                    quantidade_add = int(input("Digite a quantidade que deseja adicionar: "))
-                                    inventario[escolha] = (nome, quantidade + quantidade_add, valor)
-                                    print(f"\n{quantidade_add} unidades de {nome} adicionadas ao estoque.\n")
-                                elif opcao_estoque == "2":
-                                    quantidade_rem = int(input("Digite a quantidade que deseja remover: "))
-                                    if quantidade_rem > quantidade:
-                                        print(f"\nNão há {quantidade_rem} unidades de {nome} em estoque.\n")
+            vend_usu_input= None
+            while vend_usu_input is None:
+                vend_usu_input = input("Digite seu nome de usuário: ")
+                if vend_usu_input == "":
+                    print("Digite um nome de usuário por favor: ")
+                    vend_usu_input=None
+                    
+                if vend_usu_input == vend_usu:
+                    vend_pass_input = input("Digite sua senha: ")
+                    if vend_pass_input == vend_pass:
+                        print("\n*****Login efetuado com sucesso!******\n")
+                        # TODO: adicionar menu para gerenciamento de estoque
+                        while True:
+                            print("\nSelecione uma opção:\n1 - Verificar estoque\n2 - Modificar estoque\n3 - Sair")
+                            opcao_vend = input()
+                            
+                            if opcao_vend == "1": #VERIFICAÇÃO DE ESTOQUE 
+                                print("\nEstoque atual:\n")
+                                for numero, (nome, quantidade, valor) in estoque.items():
+                                    print(f"{numero}. {nome} - {quantidade} unidades - R$ {valor:.2f}")
+                                    
+                                    
+                            elif opcao_vend == "2": #EDIÇÃO DO ESTOQUE 
+                                print("\nAdicionar ou remover produtos do estoque:\n")
+                                for numero, (nome, quantidade, valor) in estoque.items():
+                                    print(f"{numero}. {nome} - {quantidade} unidades - R$ {valor:.2f}")
+                                escolha = input("\nDigite o número do produto que deseja modificar: ")
+                                
+                                if escolha in estoque:
+                                    nome, quantidade, valor = estoque[escolha]
+                                    print(f"\nProduto selecionado: {nome} - {quantidade} unidades - R$ {valor:.2f}")
+                                    opcao_estoque = input("\nO que deseja fazer:\n1 - Adicionar unidades\n2 - Remover unidades\n3 - Alterar valor\n4 - Cancelar\n")
+                                    
+                                    if opcao_estoque == "1":
+                                        quantidade_add = int(input("Digite a quantidade que deseja adicionar: "))
+                                        estoque[escolha] = (nome, quantidade + quantidade_add, valor)
+                                        print(f"\n{quantidade_add} unidades de {nome} adicionadas ao estoque.\n")
+                                   
+                                    elif opcao_estoque == "2":
+                                        quantidade_rem = int(input("Digite a quantidade que deseja remover: "))
+                                        
+                                        if quantidade_rem > quantidade:
+                                            print(f"\nNão há {quantidade_rem} unidades de {nome} em estoque.\n")
+                                        
+                                        else:
+                                            estoque[escolha] = (nome, quantidade - quantidade_rem, valor)
+                                            print(f"\n{quantidade_rem} unidades de {nome} removidas do estoque.\n")
+                                   
+                                    elif opcao_estoque == "3":
+                                        novo_valor = float(input("Digite o novo valor: "))
+                                        estoque[escolha] = (nome, quantidade, novo_valor)
+                                        print(f"\nValor de {nome} alterado para R$ {novo_valor:.2f}\n")
+                                    
+                                    elif opcao_estoque == "4":
+                                        print("\nOperação cancelada.\n")
+                                    
                                     else:
-                                        inventario[escolha] = (nome, quantidade - quantidade_rem, valor)
-                                        print(f"\n{quantidade_rem} unidades de {nome} removidas do estoque.\n")
-                                elif opcao_estoque == "3":
-                                    novo_valor = float(input("Digite o novo valor: "))
-                                    inventario[escolha] = (nome, quantidade, novo_valor)
-                                    print(f"\nValor de {nome} alterado para R$ {novo_valor:.2f}\n")
-                                elif opcao_estoque == "4":
-                                    print("\nOperação cancelada.\n")
+                                        print("\nOpção inválida. Operação cancelada.\n")
                                 else:
-                                    print("\nOpção inválida. Operação cancelada.\n")
+                                    print("\nProduto não encontrado. Operação cancelada.\n")
+                                    
+                            elif opcao_vend == "3": #EXIT DO GERENCIADOR
+                                print("\nSaindo do gerenciador de estoque...")
+                                exit()   
                             else:
-                                print("\nProduto não encontrado. Operação cancelada.\n")
-                        elif opcao_vend == "3":
-                            print("\nSaindo do gerenciador de estoque...")
-                            break
-                        else:
-                            print("\nOpção inválida. Tente novamente.\n")
-                    break
+                                print("\nOpção inválida. Tente novamente.\n")
+                        break
+                    else:
+                        print("\n/////Senha incorreta. Tente novamente./////\n")
                 else:
-                    print("Senha incorreta. Tente novamente.")
-            else:
-                print("E-mail incorreto. Tente novamente.")
+                    print("\n/////Usuário não encontrado/////\n")
 
 
 
@@ -112,6 +134,9 @@ while True:
                 if usuario_login in usuarios and usuarios[usuario_login] == senha_login:
                     print("\n*****Login efetuado com sucesso!******\n")
                     dec = input("Você deseja realizar uma compra? Se sim, vamos para o cadastro! ")
+                else:
+                    print("\n//////Usuario não encontrado//////\n")
+                    break
                     if dec in pos:
                         
                         nome = None
@@ -133,6 +158,10 @@ while True:
                                 if idade < 0:
                                     print("Por favor, digite uma idade válida.")
                                     idade = None
+                                elif idade < 18:
+                                    print("O site é apenas para maiores de 18 anos!")
+                                    print(f"Obrigado, {msg}")
+                                    exit()
                             except ValueError:
                                 print("Por favor, digite um valor numérico para a idade.")
                                 idade = None
@@ -178,10 +207,8 @@ while True:
                         break
                     else:
                         print(f"Tudo bem,{msg} ")
-                        break
-                    break
-                break
-            break
+                        exit()
+                
     else:
         print("\nOpção inválida. Tente novamente.")        
     
