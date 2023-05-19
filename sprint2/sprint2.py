@@ -38,12 +38,12 @@ hora = datetime.datetime.now().time()
 if hora.hour < 12:
     msg = "Bom dia!"
 elif hora.hour < 18:
-    msg = "Boa tarde!"
+    msg = "Boa tarde!"  #código para mensagem ao usuário
 else:
     msg = "Boa noite!"
 
-adm = "administrador12"
-admpass = "adm123"
+adm = "administrador12" #login do admministrador
+admpass = "adm123"      #senha do admministrador
 
 while True:
     opc = input(
@@ -63,9 +63,9 @@ while True:
 
                         while True:
                             esc = input(
-                                "\nDigite a região que você gostaria de verificar:\n1. Região Norte\n2. Região Nordeste\n3. Região Centro-Oeste \n4. Região Sudeste\n5. Região Sul\n6. Adicionar Vaso\n7. Voltar ao Menu Inicial\n8. Sair\n\n")
+                                "\nDigite a região que você gostaria de verificar:\n1. Região Norte\n2. Região Nordeste\n3. Região Centro-Oeste \n4. Região Sudeste\n5. Região Sul\n6. Adicionar Vaso\n7. Voltar ao Menu Inicial\n8. Sair\n")
                             def exibir_feedbacks_ordem(zona):
-                                print(f"******Feedbacks para a zona: {zona}*******")
+                                print(f"\n******Feedbacks para a região: {zona}*******")
                                 for vaso, feedback in feedbacks[zona].items():
                                     
                                     notas = feedback['notas']
@@ -76,11 +76,11 @@ while True:
                                     else:
                                         print(f"-Vaso: {vaso} - Nenhum feedback registrado-")
                                     if comentarios:
-                                        print(f"Comentários para o vaso {vaso}:\n")
+                                        print(f"Comentários para o vaso {vaso}:")
                                         for comentario in comentarios:
                                             print(f"{comentario}\n")
                                     else:
-                                        print(f"Nenhum comentário registrado para o vaso {vaso}")
+                                        print(f"Nenhum comentário registrado para o vaso {vaso}\n")
 
                             if esc == "1":
                                 zona_escolhida = zonas[0]
@@ -98,13 +98,13 @@ while True:
                                 zona_escolhida = zonas[4]
                                 exibir_feedbacks_ordem(zona_escolhida)
                             elif esc == "6":
-                                zona = input("Digite o nome da zona em que deseja adicionar o vaso: ")
+                                zona = input("Digite o nome da região em que deseja adicionar o vaso: ")
                                 if zona in zonas:
                                     vaso = input("Digite o nome do vaso: ")
                                     feedbacks[zona][vaso] = {'notas': [], 'comentarios': []}
                                     print("Vaso adicionado com sucesso!")
                                 else:
-                                    print("Zona inválida. Tente novamente.")
+                                    print("Região inválida. Tente novamente. Atente a escrita, digite igual o exemplo: (Região Sul)")
                             elif esc == "7":
                                 break
                             elif esc == "8":
@@ -124,32 +124,32 @@ while True:
         print("Olá, cliente!")
         zona_escolhida = None
 
-        # Exibir lista de zonas disponíveis
-        print("Zonas disponíveis:")
+        # Exibir lista de regiões disponíveis
+        print("Regiões disponíveis:")
         for i, zona in enumerate(zonas):
             print(f"{i + 1}. {zona}")
 
         while True:
-            esc = input("Digite o número da zona que você deseja fornecer feedback (ou 'sair' para voltar ao menu): ")
+            esc = input("Digite o número da região que você deseja fornecer feedback (ou 'sair' para voltar ao menu): \n")
 
             if esc.lower() == "sair":
                 break
 
-            if esc.isdigit() and 1 <= int(esc) <= 4:
+            if esc.isdigit() and 1 <= int(esc) <= 5:
                 zona_escolhida = zonas[int(esc) - 1]
                 break
             else:
                 print("Opção inválida. Tente novamente.")
 
         if zona_escolhida:
-            print(f"\nVocê selecionou a zona: {zona_escolhida}\n")
+            print(f"\nVocê selecionou a região: {zona_escolhida}\n")
             print("Vasos disponíveis:")
             for i, vaso in enumerate(feedbacks[zona_escolhida].keys()):
                 print(f"{i + 1}. {vaso}")
 
             while True:
                 esc_vaso = input(
-                    "Digite o número do vaso que você deseja fornecer feedback (ou 'sair' para voltar ao menu): ")
+                    "\nDigite o número do vaso que você deseja fornecer feedback (ou 'sair' para voltar ao menu): ")
 
                 if esc_vaso.lower() == "sair":
                     break
