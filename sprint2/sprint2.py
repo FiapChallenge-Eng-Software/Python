@@ -3,30 +3,35 @@ import getpass
 
 # Lista de feedbacks
 feedbacks = {
-    'Zona Norte': {
+    'Região Norte': {
         'Vaso 1': {'notas': [], 'comentarios': []},
         'Vaso 2': {'notas': [], 'comentarios': []},
         # Adicione mais vasos da Zona Norte, se necessário
     },
-    'Zona Sul': {
+    'Região Nordeste': {
+        'Vaso 1': {'notas': [], 'comentarios': []},
+        'Vaso 2': {'notas': [], 'comentarios': []},
+        # Adicione mais vasos da Zona Nordeste , se necessário
+    },
+    'Região Centro-Oeste': {
+        'Vaso 1': {'notas': [], 'comentarios': []},
+        'Vaso 2': {'notas': [], 'comentarios': []},
+        # Adicione mais vasos da Zona Centro-Oeste, se necessário
+    },
+    'Região Sudeste': {
+        'Vaso 1': {'notas': [], 'comentarios': []},
+        'Vaso 2': {'notas': [], 'comentarios': []},
+        # Adicione mais vasos da Zona Sudeste, se necessário
+    },
+    'Região Sul': {
         'Vaso 1': {'notas': [], 'comentarios': []},
         'Vaso 2': {'notas': [], 'comentarios': []},
         # Adicione mais vasos da Zona Sul, se necessário
-    },
-    'Zona Leste': {
-        'Vaso 1': {'notas': [], 'comentarios': []},
-        'Vaso 2': {'notas': [], 'comentarios': []},
-        # Adicione mais vasos da Zona Leste, se necessário
-    },
-    'Zona Oeste': {
-        'Vaso 1': {'notas': [], 'comentarios': []},
-        'Vaso 2': {'notas': [], 'comentarios': []},
-        # Adicione mais vasos da Zona Oeste, se necessário
     }
 }
 
 # Lista de zonas
-zonas = ['Zona Norte', 'Zona Sul', 'Zona Leste', 'Zona Oeste']
+zonas = ['Região Norte', 'Região Nordeste', 'Região Centro-Oeste', 'Região Sudeste', 'Região Sul']
 
 hora = datetime.datetime.now().time()
 
@@ -58,7 +63,7 @@ while True:
 
                         while True:
                             esc = input(
-                                "\nDigite a região que você gostaria de verificar:\n1. Zona Norte\n2. Zona Sul\n3. Zona Leste \n4. Zona Oeste\n5. Adicionar Vaso\n6. Voltar ao Menu Inicial\n7. Sair\n\n\n")
+                                "\nDigite a região que você gostaria de verificar:\n1. Região Norte\n2. Região Nordeste\n3. Região Centro-Oeste \n4. Região Sudeste\n5. Região Sul\n6. Adicionar Vaso\n7. Voltar ao Menu Inicial\n8. Sair\n\n")
                             def exibir_feedbacks_ordem(zona):
                                 print(f"******Feedbacks para a zona: {zona}*******")
                                 for vaso, feedback in feedbacks[zona].items():
@@ -90,6 +95,9 @@ while True:
                                 zona_escolhida = zonas[3]
                                 exibir_feedbacks_ordem(zona_escolhida)
                             elif esc == "5":
+                                zona_escolhida = zonas[4]
+                                exibir_feedbacks_ordem(zona_escolhida)
+                            elif esc == "6":
                                 zona = input("Digite o nome da zona em que deseja adicionar o vaso: ")
                                 if zona in zonas:
                                     vaso = input("Digite o nome do vaso: ")
@@ -97,9 +105,9 @@ while True:
                                     print("Vaso adicionado com sucesso!")
                                 else:
                                     print("Zona inválida. Tente novamente.")
-                            elif esc == "6":
-                                break
                             elif esc == "7":
+                                break
+                            elif esc == "8":
                                 print(f"{msg}, muito obrigado!")
                                 exit()
                             else:
