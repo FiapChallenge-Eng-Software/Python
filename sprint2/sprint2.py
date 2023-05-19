@@ -52,7 +52,7 @@ while True:
                 if adm_input.lower() == "voltar":
                     break
                 if adm_input == adm:
-                    adm_passinput = getpass.getpass("Digite sua senha: ")
+                    adm_passinput = input("Digite sua senha: ")
                     if adm_passinput == admpass:
                         print("\n***** Login efetuado com sucesso! *****\n")
 
@@ -60,20 +60,20 @@ while True:
                             esc = input(
                                 "\n\nDigite a região que você gostaria de verificar:\n1. Zona Norte\n2. Zona Sul\n3. Zona Leste \n4. Zona Oeste\n5. Adicionar Vaso\n6. Voltar ao Menu Inicial\n7. Sair\n\n\n")
                             def exibir_feedbacks_ordem(zona):
-                                print(f"Feedbacks para a zona: {zona}")
+                                print(f"******Feedbacks para a zona: {zona}*******")
                                 for vaso, feedback in feedbacks[zona].items():
                                     
                                     notas = feedback['notas']
                                     comentarios = feedback['comentarios']
                                     if notas:
                                         media = sum(notas) / len(notas)
-                                        print(f"Vaso: {vaso} - Média de nota: {media:.2f}")
+                                        print(f"\nVaso: {vaso} - Média de nota: {media:.2f}")
                                     else:
-                                        print(f"Vaso: {vaso} - Nenhum feedback registrado")
+                                        print(f"-Vaso: {vaso} - Nenhum feedback registrado-")
                                     if comentarios:
-                                        print(f"Comentários para o vaso {vaso}:")
+                                        print(f"Comentários para o vaso {vaso}:\n")
                                         for comentario in comentarios:
-                                            print(comentario)
+                                            print(f"{comentario}\n")
                                     else:
                                         print(f"Nenhum comentário registrado para o vaso {vaso}")
 
