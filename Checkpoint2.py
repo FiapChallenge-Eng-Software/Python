@@ -6,7 +6,7 @@
 # cria um dicionário vazio para representar o estoque
 # Definir inventário vazio
 estoque = {
-     "1": ("Vinho tinto", 5, 149.90),
+    "1": ("Vinho tinto", 5, 149.90),
     "2": ("Vinho branco", 10, 99.90),
     "3": ("Vinho rosé", 7, 79.90),
     "4": ("Vinho do Porto", 3, 199.90),
@@ -111,6 +111,7 @@ while True:
         # Opção do cliente
     elif opcao == "2":
             pos = ["sim", "Sim", "S", "s", "Ss", "ss"]
+            neg = ["não","Não","nao", "Nao", "N", "n", "Ns", "nn"]
             dec = None
             usuarios = {}
 
@@ -137,83 +138,159 @@ while True:
                 else:
                     print("\n//////Usuario não encontrado//////\n")
                     break
-                    if dec in pos:
-                        
-                        nome = None
-                        while nome is None:
-                            nome = input("Digite seu primeiro nome: ")
-                            if nome == "":
-                                print("Por favor, preencha seu nome.")
-                                nome = None
+                if dec in pos:
+                    
+                    nome = None
+                    while nome is None:
+                        nome = input("Digite seu primeiro nome: ")
+                        if nome == "":
+                            print("Por favor, preencha seu nome.")
+                            nome = None
 
-                        sobrenome = input("Digite seu sobrenome: ")
-                        if sobrenome == "":
-                            print("Por favor, preencha seu sobrenome.")
-                            sobrenome = None
+                    sobrenome = input("Digite seu sobrenome: ")
+                    if sobrenome == "":
+                        print("Por favor, preencha seu sobrenome.")
+                        sobrenome = None
 
-                        idade = None
-                        while idade is None:
-                            try:
-                                idade = int(input("Digite sua idade: "))
-                                if idade < 0:
-                                    print("Por favor, digite uma idade válida.")
-                                    idade = None
-                                elif idade < 18:
-                                    print("O site é apenas para maiores de 18 anos!")
-                                    print(f"Obrigado, {msg}")
-                                    exit()
-                            except ValueError:
-                                print("Por favor, digite um valor numérico para a idade.")
+                    idade = None
+                    while idade is None:
+                        try:
+                            idade = int(input("Digite sua idade: "))
+                            if idade < 0:
+                                print("Por favor, digite uma idade válida.")
                                 idade = None
+                            elif idade < 18:
+                                print("O site é apenas para maiores de 18 anos!")
+                                print(f"Obrigado, {msg}")
+                                exit()
+                        except ValueError:
+                            print("Por favor, digite um valor numérico para a idade.")
+                            idade = None
 
-                        # Cadastro de endereço
-                        rua = None
-                        while rua is None:
-                            rua = input("Digite o nome da sua rua: ")
-                            if rua == "":
-                                print("Por favor, preencha o nome da rua.")
-                                rua = None
+                    # Cadastro de endereço
+                    rua = None
+                    while rua is None:
+                        rua = input("Digite o nome da sua rua: ")
+                        if rua == "":
+                            print("Por favor, preencha o nome da rua.")
+                            rua = None
 
-                        bairro = None
-                        while bairro is None:
-                            bairro = input("Digite o bairro: ")
-                            if bairro == "":
-                                print("Por favor, preencha o nome do bairro.")
-                                bairro = None
+                    bairro = None
+                    while bairro is None:
+                        bairro = input("Digite o bairro: ")
+                        if bairro == "":
+                            print("Por favor, preencha o nome do bairro.")
+                            bairro = None
 
-                        num = None
-                        while num is None:
-                            num = input("Digite o número da casa: ")
-                            if num == "":
-                                print("Por favor, preencha o número da casa.")
-                                num = None
+                    num = None
+                    while num is None:
+                        num = input("Digite o número da casa: ")
+                        if num == "":
+                            print("Por favor, preencha o número da casa.")
+                            num = None
 
-                        cep = None
-                        while cep is None:
-                            cep_str = input("Digite o CEP: ")
-                            if cep_str == "":
-                                print("Por favor, preencha o CEP.")
+                    cep = None
+                    while cep is None:
+                        cep_str = input("Digite o CEP: ")
+                        if cep_str == "":
+                            print("Por favor, preencha o CEP.")
+                            cep = None
+                        else:
+                            try:
+                                cep = int(cep_str)
+                            except ValueError:
+                                print("Por favor, digite um CEP válido.")
                                 cep = None
-                            else:
-                                try:
-                                    cep = int(cep_str)
-                                except ValueError:
-                                    print("Por favor, digite um CEP válido.")
-                                    cep = None
 
-                        comp = input("Digite o complemento (opcional): ")
+                    comp = input("Digite o complemento (opcional): ")
 
-                        print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}")     
-                        break
-                    else:
-                        print(f"Tudo bem,{msg} ")
-                        exit()
+                    print(f"Esses são seus dados:\nNome: {nome} {sobrenome}\nIdade: {idade}\nSeus dados de endereço são:\nRua: {rua}\nBairro: {bairro}\nNúmero: {num}\nCEP: {cep}\nComplemento: {comp}\n")
+                    #fim do cadastro, seleção dos vinho
+                    
+                    print("Agora vamos para o menu de seleção dos vinhos")
+                    
+                    opcVinhos = ["1","2","3","4"]  
+                    print(" 1 - Vinho Tinto - R$149.99\n 2 - Vinho Branco - R$99,99\n 3 - Vinho Rosé - R$79.99\n 4 - Vinho do Porto - R$199,99")
                 
+                    vinSel = None
+                    while vinSel is None:
+                        vinSel = input("Selecione qual vinho deseja: (1,2,3,4)")  
+                        if vinSel not in opcVinhos:
+                            print("Por favor, digite uma opção válida (1,2,3,4)")
+                            vinSel = None
+                        else: #opcão dentro dos vinhos listados                           
+                            match vinSel:
+                                case "1":
+                                    print("Você optou pela opção 1: (Vinho Tinto - R$149,99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 149.99
+                                    quantidade -= quantCompra
+                                case "2":
+                                    print("Você optou pela opção 2: (Vinho Branco - R$99,99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 99.99
+                                    quantidade -= quantCompra
+                                case "3":
+                                    print("Você optou pela opção 3: (Vinho Rosé - R$79.99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 79.99
+                                    quantidade -= quantCompra
+                                case "4":
+                                    print("Você optou pela opção 4: (Vinho do Porto - R$199,99)")
+                                    quantCompra = int(input("Quantos vinhos deseja? "))
+                                    valorT = quantCompra * 199.99
+                                    quantidade -= quantCompra
+                                
+                            confirmaSel = None
+                            while confirmaSel is None:
+                                confirmaSel = input("Gostaria de confirmar sua seleção? (Sim/Não) ")
+                                if confirmaSel in pos:
+                                    if quantidade < 0:
+                                        print("Não temos esta quantidade do vinho $s no estoque \nQuantidade no estoque = %d" %(vinSe, quantidade))
+                                        continue
+                                    else: #quantidade no estoque
+                                        print("Quantidade disponível no estoque")
+                                        print("O valor total é: R$%5.2f" %valorT)
+                                        
+                                        if valorT > 100:
+                                            print("Valor mínimo de R$100,00 não alcançado\n Selecione mais vinhos dessa vez para realizar a compra")
+                                            quantCompra = 0
+                                            vinSel = None
+                                        
+                                        elif valorT > 200:
+                                            frete = 0
+                                            print("Frete grátis!")
+                                            
+                                        else:
+                                            frete = 0.1 # frete de 10% para valores entre 100 e 200
+                                            print("Calculando seu frete...")   
+                                        
+                                        valorFinal = valorT + (valorT * frete) 
+                                        
+                                        print("O valor final com frete é R$%5.2f" %valorFinal)   
+                                        print("Você comprou %d vinho(s) da categoria %s" %(quantCompra, vinSel))
+                                        print("Muito obrigado pela preferência %s. Volte Sempre!" %nome)
+                                                                
+                                        
+                                elif confirmaSel in neg:
+                                    print("Muito bem, pode alterar seu pedido")
+                                    vinSel = None
+                                    
+                                else:
+                                    print("Dê uma resposta válida! (Sim/Não)")
+                                    confirmaSel = None
+                                                                                                                     
+                        
+                else:
+                    print(f"Tudo bem,{msg} ")
+                    exit()
+                    
+            
     else:
         print("\nOpção inválida. Tente novamente.")        
     
-else:
-            print(f"Obrigado, {msg}!")
+# else:
+#     print(f"Obrigado, {msg}!")
 ######################### CADASTRO DE CLIENTE# #############################
 
 
