@@ -47,9 +47,9 @@ admpass = "adm123"      #senha do admministrador
 
 while True:
     opc = input(
-        f"{msg} Você deseja fazer login como:\n1. Administrador\n2. Cliente\n3. Sair\n")
+        f"{msg} Você deseja fazer login como:\n1. Administrador\n2. Cliente\n3. Sair\n") #Menu inicial
 
-    if opc == "1":
+    if opc == "1": #login de administrador
         while True:
             adm_input = None
             while adm_input is None:
@@ -60,11 +60,12 @@ while True:
                     adm_passinput = input("Digite sua senha: ")
                     if adm_passinput == admpass:
                         print("\n***** Login efetuado com sucesso! *****\n")
-
+                        #Após login realizado
                         while True:
                             esc = input(
                                 "\nDigite a região que você gostaria de verificar:\n1. Região Norte\n2. Região Nordeste\n3. Região Centro-Oeste \n4. Região Sudeste\n5. Região Sul\n6. Adicionar Vaso\n7. Voltar ao Menu Inicial\n8. Sair\n")
                             def exibir_feedbacks_ordem(zona):
+                                #tela dos feedbacks e comentários
                                 print(f"\n******Feedbacks para a região: {zona}*******")
                                 for vaso, feedback in feedbacks[zona].items():
                                     
@@ -81,7 +82,7 @@ while True:
                                             print(f"{comentario}\n")
                                     else:
                                         print(f"Nenhum comentário registrado para o vaso {vaso}\n")
-
+                            #selecão do usuário
                             if esc == "1":
                                 zona_escolhida = zonas[0]
                                 exibir_feedbacks_ordem(zona_escolhida)
@@ -97,7 +98,7 @@ while True:
                             elif esc == "5":
                                 zona_escolhida = zonas[4]
                                 exibir_feedbacks_ordem(zona_escolhida)
-                            elif esc == "6":
+                            elif esc == "6": #Adicionar vaso
                                 zona = input("Digite o nome da região em que deseja adicionar o vaso: ")
                                 if zona in zonas:
                                     vaso = input("Digite o nome do vaso: ")
@@ -105,17 +106,17 @@ while True:
                                     print("Vaso adicionado com sucesso!")
                                 else:
                                     print("Região inválida. Tente novamente. Atente a escrita, digite igual o exemplo: (Região Sul)")
-                            elif esc == "7":
+                            elif esc == "7":#retornar
                                 break
-                            elif esc == "8":
+                            elif esc == "8":#Finaliza o programa
                                 print(f"{msg}, muito obrigado!")
                                 exit()
-                            else:
+                            else:#qualquer resposta errada do usuário
                                 print("Opção inválida. Tente novamente.")
-
+                    #senha errada no login
                     else:
-                        print("Senha incorreta!")
-                    break
+                        print("Senha incorreta! Tente Novamente.")
+                    break 
                 break
             break
 
@@ -128,7 +129,7 @@ while True:
         print("Regiões disponíveis:")
         for i, zona in enumerate(zonas):
             print(f"{i + 1}. {zona}")
-
+        #tela dos feedbacks
         while True:
             esc = input("Digite o número da região que você deseja fornecer feedback (ou 'sair' para voltar ao menu): \n")
 
@@ -153,7 +154,7 @@ while True:
 
                 if esc_vaso.lower() == "sair":
                     break
-
+                
                 if esc_vaso.isdigit() and 1 <= int(esc_vaso) <= len(feedbacks[zona_escolhida]):
                     vaso_escolhido = list(feedbacks[zona_escolhida].keys())[int(esc_vaso) - 1]
                     nota = input("Digite uma nota de 0 a 5 para o vaso: ")
