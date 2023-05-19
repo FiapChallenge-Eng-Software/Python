@@ -1,0 +1,51 @@
+Eduardo Fedeli Souza RM:550132
+Jéssica Brum Maia Filho RM:97944
+Sofia Amorim Coutinho RM:552534
+Otávio Vitoriano da Silva RM:552012
+Gabriel Torres Luiz RM: 98600
+
+# CleanWave
+
+Este programa permite que administradores e clientes forneçam feedbacks para diferentes vasos localizados em diferentes áreas geográficas. Os feedbacks são armazenados em um dicionário para análise e visualização do administrador.
+
+## Requisitos
+
+- Python 3.x
+
+## Como executar o programa
+
+1. Certifique-se de ter o Python 3.x instalado em sua máquina.
+2. Faça o download do código-fonte do programa.
+3. Abra um terminal ou prompt de comando.
+4. Navegue até o diretório onde o código-fonte do programa está localizado.
+5. Execute o seguinte comando:
+
+```
+sprint2.py
+```
+## FUNCIONALIDADES:
+
+### Login
+
+- O programa exibe um menu de login para o usuário.
+- O usuário pode escolher entre fazer login como administrador ou como cliente.
+- O administrador precisa fornecer um nome de usuário e senha corretos para fazer login.
+
+### Menu do Administrador
+
+- Após fazer login como administrador, o usuário tem acesso a um menu com as seguintes opções:
+  1. Verificar feedbacks por região: Permite visualizar os feedbacks registrados para cada vaso em uma determinada região.
+  2. Adicionar Vaso: Permite adicionar um novo vaso em uma zona específica.
+  3. Voltar ao Menu Inicial: Retorna ao menu de login.
+  4. Sair: Encerra o programa.
+
+### Menu do Cliente
+
+- Após fazer login como cliente, o usuário tem acesso a um menu para fornecer feedbacks.
+- O cliente pode selecionar a zona geográfica em que deseja fornecer um feedback.
+- Em seguida, o cliente pode escolher um vaso específico para fornecer uma nota e um comentário.
+- O feedback é registrado no dicionário de feedbacks.
+
+## Considerações Finais
+
+Este programa oferece uma ferramenta útil coletando feedbacks de clientes. Os administradores podem visualizar e gerenciar os feedbacks registrados, enquanto os clientes podem fornecer suas opiniões sobre os vasos. O programa é flexível e permite a adição de novos vasos e regiões conforme necessário. Adição excelente praa a CleanWave!
