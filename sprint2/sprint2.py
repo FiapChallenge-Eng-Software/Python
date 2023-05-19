@@ -58,10 +58,11 @@ while True:
 
                         while True:
                             esc = input(
-                                "Digite a região que você gostaria de verificar:\n1. Zona Norte\n2. Zona Oeste\n3. Zona Sul\n4. Zona Leste\n5. Adicionar Vaso\n6. Voltar ao Menu Inicial\n7. Sair\n")
+                                "\n\nDigite a região que você gostaria de verificar:\n1. Zona Norte\n2. Zona Sul\n3. Zona Leste \n4. Zona Oeste\n5. Adicionar Vaso\n6. Voltar ao Menu Inicial\n7. Sair\n\n\n")
                             def exibir_feedbacks_ordem(zona):
                                 print(f"Feedbacks para a zona: {zona}")
                                 for vaso, feedback in feedbacks[zona].items():
+                                    
                                     notas = feedback['notas']
                                     comentarios = feedback['comentarios']
                                     if notas:
