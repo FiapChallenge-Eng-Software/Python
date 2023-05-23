@@ -12,7 +12,7 @@ estoque = {
     "4": ("Vinho do Porto", 3, 199.90),
 }
 
-# Definir credenciais do vendedor
+ # Definir credenciais do vendedor
 vend_usu = "vendedor1"
 vend_pass = "12345"
 # Definir mensagem de boas-vindas
