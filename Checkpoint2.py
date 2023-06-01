@@ -289,8 +289,8 @@ while True:
     else:
         print("\nOpção inválida. Tente novamente.")        
     
-# else:
-#     print(f"Obrigado, {msg}!")
-######################### CADASTRO DE CLIENTE# #############################
+else:
+    print(f"Obrigado, {msg}!")
+
 
 
